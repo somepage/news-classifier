@@ -1,4 +1,2 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea
-*.pickle
-__pycache__
+git remote add origin https://github.com/somepage/news-searcher.gitgit push -u origin mastergit push -u origin master

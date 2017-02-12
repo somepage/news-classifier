@@ -14,7 +14,7 @@ def predictor(sent):
     tfid = joblib.load("tfidf.pkl")
     clf = joblib.load("model.pkl")
     sent = tfid.transform([sent]).toarray()
-    #sent = sent[:,:62572]
+    # sent = sent[:,:62572]
     n_cls = clf.predict(sent)
     return n_cls
 
@@ -40,9 +40,7 @@ def learning():
             if text:
                 X.append(text)
                 Y.append(category)
-
-
-
+    print(len(X))
     vect_stemming = np.vectorize(stemming_sent)
     X = vect_stemming(X)
     x_train, x_test, y_train, y_test = train_test_split(X, Y,
@@ -52,7 +50,7 @@ def learning():
     tf_idf_v = TfidfVectorizer()
     tf_idf_v.fit(x_train)
     joblib.dump(tf_idf_v, "tfidf.pkl")
-    x_train = tf_idf_v.transform(x_train).toarray()
+    x_train = tf_idf_v.transform(x_train)
     nb = MultinomialNB()
     nb.fit(x_train, y_train)
     joblib.dump(nb, 'model.pkl')
